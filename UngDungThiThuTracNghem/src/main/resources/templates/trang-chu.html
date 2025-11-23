@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+</head>
+<body>
+<h1>Danh sách đề thi</h1>
+
+
+<form id="locForm" th:action="@{/de-thi/loc-tong-hop}" method="get">
+
+    <label>Từ khóa:</label>
+    <input type="text" name="keyword" placeholder="Nhập từ khóa..." th:value="${keyword}">
+
+<br>
+    <label>Môn học:</label>
+    <select name="monHoc" th:value="${monHoc}">
+        <option value="">-- Tất cả --</option>
+        <option value="Toán" th:selected="${monHoc == 'Toán'}">Toán</option>
+        <option value="Văn" th:selected="${monHoc == 'Văn'}">Văn</option>
+        <option value="Sử" th:selected="${monHoc == 'Sử'}">Sử</option>
+    </select>
+
+<br>
+    <label>Từ ngày:</label>
+    <input type="date" name="tuNgay" th:value="${tuNgay}">
+    <label>Đến ngày:</label>
+    <input type="date" name="denNgay" th:value="${denNgay}">
+
+<br>
+    <label>Sắp xếp theo:</label>
+    <select name="sort" onchange="document.getElementById('locForm').submit()">
+        <option value="">-- Mặc định --</option>
+        <option value="tenAsc" th:selected="${sort == 'tenAsc'}">Tên A → Z</option>
+        <option value="tenDesc" th:selected="${sort == 'tenDesc'}">Tên Z → A</option>
+        <option value="ngayAsc" th:selected="${sort == 'ngayAsc'}">Ngày tạo ↑</option>
+        <option value="ngayDesc" th:selected="${sort == 'ngayDesc'}">Ngày tạo ↓</option>
+        <option value="soCauAsc" th:selected="${sort == 'soCauAsc'}">Số câu ↑</option>
+        <option value="soCauDesc" th:selected="${sort == 'soCauDesc'}">Số câu ↓</option>
+    </select>
+
+    <button type="submit">Lọc & Tìm kiếm</button>
+</form>
+
+<ul>
+    <li th:each="de : ${deThiList}">
+        <strong th:text="${de.tenDe}"></strong> -
+        <span th:text="${de.monHoc}"></span> -
+        <span th:text="'Số câu: ' + ${de.danhSachCauHoi.size()}"></span> -
+        <span th:text="${#temporals.format(de.ngayTao, 'dd/MM/yyyy')}"></span>
+        <br>
+        <a th:href="@{'/cau-hoi/tao-cho-de/' + ${de.id}}">Tạo câu hỏi</a> |
+        <a th:href="@{'/de-thi/' + ${de.id}}">Xem câu hỏi</a> |
+        <a th:href="@{'/bai-thi/lam/' + ${de.id}}">
+            <button type="button">Làm bài thi</button>
+        </a>
+    </li>
+</ul>
+
+<hr>
+<a href="/trang-chu"><button>Trang chủ</button></a>
+<a href="/ket-qua/thong-ke"><button>Thống kê điểm</button></a>
+</body>
+</html>

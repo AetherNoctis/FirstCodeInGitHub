@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="'Câu hỏi của ' + ${deThi.tenDe}"></h1>
+
+<a th:href="@{'/bai-thi/lam/' + ${deThi.id}}">
+    <button type="button">Làm bài thi</button>
+</a>
+<br><br>
+<a th:href="@{'/cau-hoi/tao?deId=' + ${deThi.id}}">
+    <button type="button">Thêm câu hỏi</button>
+</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nội dung</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>Đáp án đúng</th>
+        <th>Thao tác</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="q : ${deThi.danhSachCauHoi}">
+        <td th:text="${q.content}"></td>
+        <td th:text="${q.dapAnA}"></td>
+        <td th:text="${q.dapAnB}"></td>
+        <td th:text="${q.dapAnC}"></td>
+        <td th:text="${q.dapAnD}"></td>
+        <td th:text="${q.chonDapAnDung}"></td>
+        <td>
+            <a th:href="@{'/cau-hoi/sua/' + ${q.id}}"
+               onclick="return confirm('Bạn có chắc muốn sửa câu hỏi này ?');">
+                <button type="button">Sửa</button>
+            </a>
+            <a th:href="@{'/cau-hoi/xoa/' + ${q.id} + '?deId=' + ${deThi.id}}"
+               onclick="return confirm('Bạn có chắc muốn xóa câu hỏi này?');">
+                <button type="button">Xóa</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/de-thi">
+    <button type="button">Quay lại danh sách đề thi</button>
+</a>
+
+</body>
+</html>

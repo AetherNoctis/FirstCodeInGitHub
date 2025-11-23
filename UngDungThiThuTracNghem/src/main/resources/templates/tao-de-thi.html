@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Tạo đề thi</title>
+</head>
+<body>
+<h2>📝 Tạo đề thi mới</h2>
+
+<form th:action="@{/de-thi/tao}" method="post" th:object="${deThi}">
+  Tên đề thi: <input type="text" th:field="*{tenDe}" required><br><br>
+
+  Môn học:
+  <select th:field="*{monHoc}" required>
+    <option th:each="mh : ${danhSachMonHoc}" th:value="${mh.maMon}" th:text="${mh.tenMon}"></option>
+  </select><br><br>
+
+  <button type="submit">Lưu và tạo câu hỏi</button>
+</form>
+
+<br>
+<a href="/de-thi">
+  <button type="button">Quay lại danh sách đề thi</button>
+</a>
+</body>
+</html>

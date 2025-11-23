@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/bai-thi/nop}" method="post">
+    <input type="hidden" name="deId" th:value="${deThi.id}">
+
+    <h2 th:text="'Làm bài thi: ' + ${deThi.tenDe}"></h2>
+
+    <div th:each="q : ${deThi.danhSachCauHoi}">
+        <p><strong th:text="${q.content}"></strong></p>
+
+        <label>
+            <input type="radio" th:name="${'dapAn_' + q.id}" value="A"> <span th:text="${q.dapAnA}"></span>
+        </label><br>
+        <label>
+            <input type="radio" th:name="${'dapAn_' + q.id}" value="B"> <span th:text="${q.dapAnB}"></span>
+        </label><br>
+        <label>
+            <input type="radio" th:name="${'dapAn_' + q.id}" value="C"> <span th:text="${q.dapAnC}"></span>
+        </label><br>
+        <label>
+            <input type="radio" th:name="${'dapAn_' + q.id}" value="D"> <span th:text="${q.dapAnD}"></span>
+        </label><br><br>
+    </div>
+
+    <button type="submit">Nộp bài</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa đề thi</title>
+</head>
+<body>
+<h2>Sửa đề thi</h2>
+
+<form th:action="@{/de-thi/sua}" th:object="${deThi}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <label>Tên đề:</label>
+    <input type="text" th:field="*{tenDe}"><br>
+
+    <label>Môn học:</label>
+    <input type="text" th:field="*{monHoc}"><br>
+
+    <button type="submit">Lưu thay đổi</button>
+    <a href="/de-thi"><button type="button">Quay lại</button></a>
+</form>
+</body>
+</html>

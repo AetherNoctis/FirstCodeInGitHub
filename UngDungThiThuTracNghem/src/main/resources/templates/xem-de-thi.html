@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách câu hỏi</title>
+</head>
+<body>
+<h1>Danh sách câu hỏi đã tạo</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nội dung</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>Đáp án đúng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="q : ${deThi.danhSachCauHoi}">
+    <td th:text="${q.id}"></td>
+        <td th:text="${q.content}"></td>
+        <td th:text="${q.dapAnA}"></td>
+        <td th:text="${q.dapAnB}"></td>
+        <td th:text="${q.dapAnC}"></td>
+        <td th:text="${q.dapAnD}"></td>
+        <td th:text="${q.chonDapAnDung}"></td>
+        <td>
+            <a th:href="@{'/cau-hoi/sua/' + ${q.id}}">Sửa</a>
+            <a th:href="@{'/cau-hoi/xoa/' + ${q.id} + '?deId=' + ${deThi.id}}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+    <a th:href="@{'/cau-hoi/tao-cho-de/' + ${deThi.id}}">
+        <button type="button">Thêm câu hỏi</button>
+    </a>
+    <br>
+    <a th:href="@{'/bai-thi/lam/' + ${deThi.id}}">
+        <button type="button">Làm bài thi</button>
+    </a>
+
+    <a href="/trang-chu">
+        <button type="button">Về trang chủ</button>
+    </a>
+</table>
+</body>
+</html>

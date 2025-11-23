@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa câu hỏi</title>
+</head>
+<body>
+<h1>Sửa câu hỏi</h1>
+
+<form th:action="@{/cau-hoi/sua}" th:object="${dienCauHoi}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{deId}">
+
+    <label>Nội dung:</label>
+    <input type="text" th:field="*{content}"><br>
+
+    <label>Đáp án A:</label>
+    <input type="text" th:field="*{dapAnA}"><br>
+
+    <label>Đáp án B:</label>
+    <input type="text" th:field="*{dapAnB}"><br>
+
+    <label>Đáp án C:</label>
+    <input type="text" th:field="*{dapAnC}"><br>
+
+    <label>Đáp án D:</label>
+    <input type="text" th:field="*{dapAnD}"><br>
+
+    <label>Đáp án đúng:</label>
+    <select th:field="*{chonDapAnDung}">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+    </select><br>
+    <button type="submit">Lưu</button>
+    <a th:href="@{'/de-thi/' + ${dienCauHoi.deId}}">
+        <button type="button">Quay lại đề thi</button>
+    </a>
+</form>
+
+</body>
+</html>

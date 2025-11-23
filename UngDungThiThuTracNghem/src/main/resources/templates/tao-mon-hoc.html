@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>➕ Tạo môn học mới</h2>
+<form th:action="@{/mon-hoc/tao}" method="post" th:object="${monHoc}">
+    Mã môn: <input type="text" th:field="*{maMon}" required><br>
+    Tên môn: <input type="text" th:field="*{tenMon}" required><br>
+    Số tín chỉ: <input type="number" th:field="*{soTinChi}" required><br>
+    Chuyên ngành: <input type="text" th:field="*{chuyenNganh}"><br>
+    Giảng viên: <input type="text" th:field="*{giangVien}"><br>
+    Bắt buộc:
+    <select th:field="*{batBuoc}">
+        <option value="Co">Có</option>
+        <option value="Khong">Không</option>
+    </select><br>
+    <button type="submit">Lưu và tạo đề thi</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Thống kê kết quả bài thi</h2>
+
+<p>Tổng số bài thi: <span th:text="${tongBai}"></span></p>
+<p>Điểm cao nhất: <span th:text="${diemCaoNhat}"></span></p>
+<p>Điểm thấp nhất: <span th:text="${diemThapNhat}"></span></p>
+<p>Điểm trung bình: <span th:text="${#numbers.formatDecimal(diemTrungBinh, 1, 1)}"></span></p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Đề thi</th>
+        <th>Điểm</th>
+        <th>Thời gian</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="kq : ${danhSach}">
+        <td th:text="${kq.tenDe}"></td>
+        <td th:text="${kq.diem}"></td>
+        <td th:text="${kq.thoiGianNop}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
